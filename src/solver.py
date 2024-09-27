@@ -1,14 +1,30 @@
-API_KEY = '123'
+import os
+API_KEY = os.environ.get('OPENAI_API_KEY')
+BASE_URL=os.environ.get('OPENAI_BASE_URL')
+MODEL = os.environ.get('OPENAI_MODEL')
+API_VERSION= os.environ.get('OPENAI_API_VERSION')
+
+# API_KEY = '123'
+# BASE_URL='http://localhost:8885/v1'
+# MODEL = 'phi-3.5-mini-instruct'
+
+#'phi-3.5-mini-instruct'
+#BASE_URL='http://localhost:11434/v1'
+ #'http://localhost:8885/v1'
+#MODEL = 'phi3'
+
 
 import chainlit as cl
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, AzureChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from agents.teacher import TeacherAgent
 from agents.student import StudentAgent
 from agents.judge import JudgeAgent
 
-MODEL = 'phi3-mini'
-client = ChatOpenAI(
+client = AzureChatOpenAI(
+    api_version = API_VERSION,
+    #base_url = BASE_URL,
+    azure_endpoint = BASE_URL,
     api_key = API_KEY, 
     model = MODEL, 
     temperature=0.7)

@@ -1,0 +1,12 @@
+services:
+  chainlit-app:
+    build: .
+    ports:
+      - 8889:8000
+    environment:
+      - CHAINLIT_AUTH_SECRET=${CHAINLIT_AUTH_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+      - BOT_ITERATIONS=${BOT_ITERATIONS}
+      # Add other environment variables as needed
